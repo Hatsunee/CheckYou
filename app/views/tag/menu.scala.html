@@ -1,0 +1,11 @@
+@()
+
+<nav class="navbar navbar-checkyou" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="@routes.ChecksController.index()">Checkyou</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a href="@routes.ChecksController.index()">トップページ</a></li>
+        <li><a href="@routes.ChecksController.recent(1)">診断結果一覧</a></li>
+    </ul>
+</nav>

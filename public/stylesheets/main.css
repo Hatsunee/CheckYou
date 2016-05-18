@@ -1,0 +1,75 @@
+/* styles */
+
+.logo, .footer-content, .description, .copy-align {
+    text-align: center;
+}
+.logo {
+    padding: 5% 0 5%;
+}
+
+.content {
+    padding: 16px;
+}
+
+.pager-margin {
+    margin-top: 40px;
+}
+
+.table-column-first {
+    width: 20%;
+}
+.table-column-second {
+    width: 40%;
+}
+.table-column-third {
+    width: 10%;
+}
+
+.table-column-fourth {
+    width: 20%;
+}
+
+.check-result {
+    padding: 0% 10% 5%;
+}
+
+.check-result-text {
+    font-size: 2em;
+}
+
+.check-result-align {
+    text-align: center;
+}
+
+.check-form {
+    padding: 0 0 10%;
+}
+
+/* extend twitter bootstrap */
+
+.navbar {
+    border-radius: 0;
+    border: none;
+}
+
+.navbar-checkyou {
+    background-color: #cc0033;
+    border-color: #bb0022;
+}
+
+.navbar-brand, .navbar-nav>li>a {
+    color: #fff;
+}
+
+.navbar-brand:hover,.nav>li>a:focus , .navbar-nav>li>a:hover, .nav>li>a:focus {
+    color: #ebb;
+    background-color: #cc0033;
+}
+
+.nav>li {
+    padding-left: 10px;
+}
+
+.table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
+    padding: 14px 20px;
+}
