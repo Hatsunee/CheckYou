@@ -1,0 +1,84 @@
+package {{crudSetting.modelPackage}};
+
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import play.data.format.Formats;
+import play.data.validation.Constraints;
+import play.db.ebean.Model;
+
+@Entity
+@Table(name = "admins")
+public class Admin extends Model {
+
+  @Id
+  public Long {{crudSetting.modelId}};
+
+  @Constraints.Required
+  public String username;
+
+  @Constraints.Required
+  public String password;
+
+{{#crudSetting.modelHasCreated}}
+  @Formats.DateTime(pattern = "dd/MM/yyyy")
+  public Date created; // timestamp
+{{/crudSetting.modelHasCreated}}
+
+{{#crudSetting.modelHasModified}}
+  @Formats.DateTime(pattern = "dd/MM/yyyy")
+  public Date modified; // timestamp
+{{/crudSetting.modelHasModified}}
+
+  public Long get{{crudSetting.modelIdUpperCase}}() {
+    return {{crudSetting.modelId}};
+  }
+
+  public void set{{crudSetting.modelIdUpperCase}}(Long {{crudSetting.modelId}}) {
+    this.{{crudSetting.modelId}} = {{crudSetting.modelId}};
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+{{#crudSetting.modelHasCreated}}
+  public Date getCreated() {
+    return created;
+  }
+
+  public void setCreated(Date created) {
+    this.created = created;
+  }
+{{/crudSetting.modelHasCreated}}
+
+{{#crudSetting.modelHasModified}}
+    public Date getModified() {
+        return modified;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+{{/crudSetting.modelHasModified}}
+
+}

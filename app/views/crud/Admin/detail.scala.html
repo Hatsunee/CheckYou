@@ -1,0 +1,49 @@
+@(title:String, model: models.entity.Admin)
+
+@import views.html.crud._
+
+@main_crud(title) {
+
+<h1>@title</h1>
+
+@if(flash.containsKey("success")) {
+    <p class="success alert alert-success">
+        <strong>@flash.get("success")</strong>
+    </p>
+} 
+@if(flash.containsKey("error")) {
+    <p class="error alert alert-error">
+        <strong>@flash.get("error")</strong>
+    </p>
+} 
+
+
+<table class="table table-bordered">
+  <tbody>
+    
+<tr id="" class="">
+    <th>id</th>
+    <td>@model.id</td>
+</tr>
+
+<tr id="" class="">
+    <th>username</th>
+    <td>@model.username</td>
+</tr>
+
+<tr id="" class="">
+    <th>password</th>
+    <td>@model.password</td>
+</tr>
+
+<tr id="" class="">
+    <th>created</th>
+    <td>@model.created</td>
+</tr>
+
+  </tbody>
+</table>
+
+  <p><a class="btn btn-primary" href="@controllers.crud.routes.AdminCrudController.index(1)">&lt; Admin Top</a></p>
+
+}

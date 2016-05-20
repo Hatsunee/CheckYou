@@ -10,6 +10,48 @@ GET		/result/:id					controllers.ChecksController.resultId(id:Long)
 GET     /recent                    	controllers.ChecksController.recent(page:Integer = 1)
 GET 	/recent/:page				controllers.ChecksController.recent(page:Integer)
 
+GET		/v1/check/:id.json			controllers.ChecksAPIController.checks(id:Long)
+GET		/v1/checks/:page.json		controllers.ChecksAPIController.getList(page:Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+#<routes path="app/controllers/crud/CheckCrudController">
+GET     /crud/check/index         controllers.crud.CheckCrudController.index(page:java.lang.Integer = 1)
+GET     /crud/check/index/        controllers.crud.CheckCrudController.index(page:java.lang.Integer = 1)
+GET     /crud/check/index/:page   controllers.crud.CheckCrudController.index(page:java.lang.Integer)
+GET     /crud/check               controllers.crud.CheckCrudController.index(page:java.lang.Integer = 1)
+GET     /crud/check/              controllers.crud.CheckCrudController.index(page:java.lang.Integer = 1)
+GET     /crud/check/view/:id      controllers.crud.CheckCrudController.view(id:Long)
+POST    /crud/check/create        controllers.crud.CheckCrudController.create()
+GET     /crud/check/create        controllers.crud.CheckCrudController.create()
+POST    /crud/check/update/:id    controllers.crud.CheckCrudController.update(id:Long)
+GET     /crud/check/update/:id    controllers.crud.CheckCrudController.update(id:Long)
+POST    /crud/check/delete/:id    controllers.crud.CheckCrudController.delete(id:Long)
+GET     /crud/check/search        controllers.crud.CheckCrudController.search()
+#</routes path="app/controllers/crud/CheckCrudController">
+
+
+#<routes path="app/controllers/crud/AdminCrudController">
+GET     /crud/admin/index         controllers.crud.AdminCrudController.index(page:java.lang.Integer = 1)
+GET     /crud/admin/index/        controllers.crud.AdminCrudController.index(page:java.lang.Integer = 1)
+GET     /crud/admin/index/:page   controllers.crud.AdminCrudController.index(page:java.lang.Integer)
+GET     /crud/admin               controllers.crud.AdminCrudController.index(page:java.lang.Integer = 1)
+GET     /crud/admin/              controllers.crud.AdminCrudController.index(page:java.lang.Integer = 1)
+GET     /crud/admin/view/:id      controllers.crud.AdminCrudController.view(id:Long)
+POST    /crud/admin/create        controllers.crud.AdminCrudController.create()
+GET     /crud/admin/create        controllers.crud.AdminCrudController.create()
+POST    /crud/admin/update/:id    controllers.crud.AdminCrudController.update(id:Long)
+GET     /crud/admin/update/:id    controllers.crud.AdminCrudController.update(id:Long)
+POST    /crud/admin/delete/:id    controllers.crud.AdminCrudController.delete(id:Long)
+GET     /crud/admin/search        controllers.crud.AdminCrudController.search()
+#</routes path="app/controllers/crud/AdminCrudController">
+#<routes path="app/controllers/crud/Top">
+GET     /crud                      controllers.crud.TopCrudController.index()
+GET     /crud/                     controllers.crud.TopCrudController.index()
+#</routes path="app/controllers/crud/Top">
+#<routes path="app/controllers/crud/Admin">
+# Authentication
+GET     /crud/login                 controllers.crud.AdminCrudController.login()
+POST    /crud/login                 controllers.crud.AdminCrudController.authenticate()
+GET     /crud/logout                controllers.crud.AdminCrudController.logout()
+#</routes path="app/controllers/crud/Admin">

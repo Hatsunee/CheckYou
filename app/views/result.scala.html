@@ -4,7 +4,7 @@
 
 @main(title) {
     <div class="check-result">
-        <h2 id="title">@title</h2>
+        <h2 id="title">@session.get("sessionText")@title</h2>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">@{check.name}さん</h3>

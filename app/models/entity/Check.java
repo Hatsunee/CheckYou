@@ -17,6 +17,7 @@ import play.libs.F.*;
 
 
 @Entity
+@Table(name = "checks")
 public class Check extends Model {
 
     @Id
@@ -46,7 +47,8 @@ public class Check extends Model {
 
     public Check(String name) {
         this.name = name;
-        this.created = new Date();        
+        this.created = new Date();
+        this.modified = new Date();                     
     }
 
     // 検索用オブジェクト生成のためのコンストラクタ
@@ -56,7 +58,8 @@ public class Check extends Model {
     */
     public Check(Long id) {
         this.id = id;
-        this.created = new Date();        
+        this.created = new Date();  
+        this.modified = new Date();                                   
     }
 
     public Check(String name, String result) {
@@ -97,6 +100,49 @@ public class Check extends Model {
         Integer maxPage = maxPageOpt.getOrElse(value);
         System.out.println("最大ページは"+maxPage);
         return maxPage;
-    }    
+    }
+
+
+    //getter,setter
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getModified() {
+        return modified;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+    
 
 }

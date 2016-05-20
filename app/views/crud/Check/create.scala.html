@@ -1,0 +1,77 @@
+@(title:String, bindForm:Form[models.entity.Check])
+
+@import helper._
+@import views.html.crud._
+
+@main_crud(title) {
+
+<h1>@title</h1>
+
+@if(flash.containsKey("success")) {
+    <p class="success alert alert-success">
+        <strong>@flash.get("success")</strong>
+    </p>
+} 
+@if(flash.containsKey("error")) {
+    <p class="error alert alert-error">
+        <strong>@flash.get("error")</strong>
+    </p>
+} 
+
+
+  @form(action = helper.CSRF(controllers.crud.routes.CheckCrudController.create())) {
+  <table class="table table-bordered">
+    <tbody>
+      
+<tr id="" class="">
+    <th><label for="models.entity.Check.id">id</label></th>
+    <td>
+        <input class="" type="text" name="id" value="@bindForm("id").value" id="models.entity.Check.id" />
+        @if(!bindForm("id").errors().isEmpty()) { @Messages(bindForm("id").errors().get(0).message()) }
+    </td>
+</tr>
+
+<tr id="" class="">
+    <th><label for="models.entity.Check.name">name</label></th>
+    <td>
+        <input class="" type="text" name="name" value="@bindForm("name").value" id="models.entity.Check.name" />
+        @if(!bindForm("name").errors().isEmpty()) { @Messages(bindForm("name").errors().get(0).message()) }
+    </td>
+</tr>
+
+<tr id="" class="">
+    <th><label for="models.entity.Check.result">result</label></th>
+    <td>
+        <input class="" type="text" name="result" value="@bindForm("result").value" id="models.entity.Check.result" />
+        @if(!bindForm("result").errors().isEmpty()) { @Messages(bindForm("result").errors().get(0).message()) }
+    </td>
+</tr>
+
+<tr id="" class="">
+    <th><label for="models.entity.Check.created">created</label></th>
+    <td>
+        <input class="" type="text" name="created" value="@bindForm("created").value" id="models.entity.Check.created" />
+        @if(!bindForm("created").errors().isEmpty()) { @Messages(bindForm("created").errors().get(0).message()) }
+    </td>
+</tr>
+
+<tr id="" class="">
+    <th><label for="models.entity.Check.modified">modified</label></th>
+    <td>
+        <input class="" type="text" name="modified" value="@bindForm("modified").value" id="models.entity.Check.modified" />
+        @if(!bindForm("modified").errors().isEmpty()) { @Messages(bindForm("modified").errors().get(0).message()) }
+    </td>
+</tr>
+
+      <tr>
+        <th></th>
+        <td><input type="submit" value="Create" class="btn"></td>
+      </tr>
+    </tbody>
+  </table>
+  }
+
+  <p><a class="btn btn-primary" href="@controllers.crud.routes.CheckCrudController.index(1)">&lt; Check Top</a></p>
+
+
+}

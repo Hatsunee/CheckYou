@@ -9,6 +9,7 @@
     <p id="description" class="description">Twitterのユーザー名を入れてください</p>
 
     @form(action = routes.ChecksController.result(), 'id -> "checkForm") {
+        @CSRF.formField
         <div class="row">
             <div class="col-md-4  col-md-offset-4 check-form">
                 <div class="input-group">

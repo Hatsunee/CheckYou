@@ -19,6 +19,10 @@ import utils.ConfigUtil;
 import utils.OptionUtil;
 import play.libs.F.*;
 
+import java.net.URLEncoder;
+import java.net.URLDecoder;
+
+
 public class ChecksController extends Application {
 
   public static Result index() {
@@ -27,6 +31,18 @@ public class ChecksController extends Application {
     Option<String> questionOpt = ConfigUtil.get("checkyou.setting.message.question");
     String title = titleOpt.getOrElse("confの読み込みエラーです");
     String question = questionOpt.getOrElse("confの読み込みエラーです");
+
+    //セッション保存
+    session("sessionText", "せっしょん");
+    //クッキーも保存
+    String cookie = "";
+    try{
+      cookie = URLEncoder.encode("くっきー","UTF-8");
+    }catch(Exception e){
+    }
+    response().setCookie("myName", cookie);
+
+
 
     return ok(index.render(title,question,new Form(ResultPostRequest.class)));
   }
@@ -57,6 +73,7 @@ public class ChecksController extends Application {
       //フォームから名前取り出し
       ResultPostRequest rpr = form.get();
       String name = rpr.getName();
+
       //タイトル作成
       Option<String> titleOpt = ConfigUtil.get("checkyou.setting.message.resultTitle");
       String title = titleOpt.getOrElse("confの読み込みエラーです");
@@ -67,6 +84,15 @@ public class ChecksController extends Application {
       check.result();
       check.store();
       System.out.println("name:"+name +" id:"+check.id);
+
+      //クッキーを取得
+      String myCookie = request().cookie("myName").value();
+      try{
+        myCookie = URLDecoder.decode(myCookie,"UTF-8");
+      }catch(Exception e){
+      }      
+      title += myCookie;
+
       return ok(result.render(title,check));
 
     }else{
@@ -83,6 +109,9 @@ public class ChecksController extends Application {
   }
 
   public static Result recent(Integer page) {
+    //クッキー削除
+    response().discardCookie("myName");    
+
     //title取得
     Option<String> titleOpt = ConfigUtil.get("checkyou.setting.message.recentTitle");
     String title = titleOpt.getOrElse("confの読み込みエラーです");    

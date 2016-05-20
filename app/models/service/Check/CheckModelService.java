@@ -30,8 +30,10 @@ public class CheckModelService implements ModelService<Check> {
     // IDで検索
     @Override
     public Option<Check> findById(Long id) {
+        Option<Long> idOpt = OptionUtil.apply(id);
+        Long idFind = idOpt.getOrElse(0L);
         Finder<Long, Check> find = new Finder<Long, Check>(Long.class, Check.class);
-        return OptionUtil.apply(find.byId(id));
+        return OptionUtil.apply(find.byId(idFind));
     }    
 
     // 保存
@@ -57,7 +59,7 @@ public class CheckModelService implements ModelService<Check> {
 
         // findPagingListを使用し, 指定したページ番号、指定ページ表示件数（LIMIT）、作成日昇順のOption<Check>のListを取得
         Finder<Long, Check> find = new Finder<Long, Check>(Long.class, Check.class);
-        List<Check> list = find.orderBy("created desc").findPagingList(LIMIT).getPage(pageNum).getList();
+        List<Check> list = find.orderBy("created").findPagingList(LIMIT).getPage(pageNum).getList();
         return OptionUtil.apply(list);
 
     } 
@@ -65,7 +67,7 @@ public class CheckModelService implements ModelService<Check> {
    // 最大ページ数を取得
     public Option<Integer> getMaxPage() {
         Finder<Long, Check> find = new Finder<Long, Check>(Long.class, Check.class);
-        Integer maxPage = find.orderBy("created desc").findPagingList(LIMIT).getTotalPageCount();
+        Integer maxPage = find.orderBy("created").findPagingList(LIMIT).getTotalPageCount();
         return OptionUtil.apply(maxPage);
     }       
 

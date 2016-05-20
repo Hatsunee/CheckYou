@@ -5,7 +5,9 @@ version := "1.0-SNAPSHOT"
 libraryDependencies ++= Seq(
   javaJdbc,
   javaEbean,
-  cache
+  cache,
+  filters,
+  "org.easytesting" % "fest-assert-core" % "2.0M10" % "test"
 )     
 
 play.Project.playJavaSettings

@@ -1,0 +1,65 @@
+@(title:String, modelList: List[models.entity.Check], page: java.lang.Integer, pageMax: java.lang.Integer, filledForm:Form[models.crud.SearchEngine.Form], column:String, keyword:String)
+
+@import helper._
+@import views.html.crud._
+
+@main_crud(title) {
+
+<h1>@title</h1>
+
+    @form(action = helper.CSRF(controllers.crud.routes.CheckCrudController.search())) {
+        <table>
+            <tr>
+                <td>
+                  <select id="column" name="column" style="margin-bottom:0">
+                  <option value="id">id</option>
+                  <option value="name">name</option>
+                  <option value="result">result</option>
+                  <option value="created">created</option>
+                  <option value="modified">modified</option>
+                  </select>
+                @*<input name="column" id="column" type="text" placeholder="Column" style="margin-bottom:0" value="@filledForm("column").value" />*@
+                </td>
+                <td><input name="keyword" id="keyword" type="text" placeholder="Keywords" style="margin-bottom:0" value="@filledForm("keyword").value" /></td>
+                @*<td><input name="page" id="page" type="text" placeholder="Page" style="margin-bottom:0" value="@filledForm("page").value" /></td>*@
+                <td><input type="submit" value="Search" class="btn" /></td>
+            </tr>
+        </table>
+    }
+    
+<p><a class="btn btn-primary" href="@controllers.crud.routes.CheckCrudController.create()">create</a></p>
+
+@if(flash.containsKey("success")) {
+    <p class="success alert alert-success">
+        <strong>@flash.get("success")</strong>
+    </p>
+} 
+@if(flash.containsKey("error")) {
+    <p class="error alert alert-error">
+        <strong>@flash.get("error")</strong>
+    </p>
+} 
+
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th>id</th>
+      <th>Actions</th>
+    </tr>
+    @for(model <- modelList) {
+    <tr>
+      <td><a href="@controllers.crud.routes.CheckCrudController.view(model.id)">@model.id</a></td>
+      <td>
+        @form(action = helper.CSRF(controllers.crud.routes.CheckCrudController.delete(model.id)), 'class -> "topRight") {
+        <a class="btn" href="@controllers.crud.routes.CheckCrudController.update(model.id)">update</a> <input type="submit" value="delete" class="btn btn-danger"/>
+        }
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+@views.html.crud.search_paginate(controllers.crud.routes.CheckCrudController.search().toString(), page, pageMax, column, keyword)
+
+}
